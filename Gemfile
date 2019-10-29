@@ -17,4 +17,3 @@ end
 
 gem 'haml'
 gem 'sassc-rails'
-gem 'sqlite3', '~> 1.4'
