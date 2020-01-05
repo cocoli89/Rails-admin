@@ -2,7 +2,7 @@
 
 import $ from 'jquery'
 
-import { init } from '../core/events'
+import { init, ready } from '../core/events'
 
 const TAB_SELECTOR = 'a[data-toggle="tab"]'
 const TAB_PANE_SELECTOR = '.tab-pane'
@@ -21,7 +21,7 @@ init(function (root) {
 })
 
 // Restore active tab when loading
-init(function () {
+ready(function () {
   focusActiveTab()
 })
 
