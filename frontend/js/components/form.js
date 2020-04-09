@@ -22,9 +22,6 @@ init(function (root) {
 
   $form
     .on('ajax:send', function (e) {
-      // Only run when triggered directly on form
-      if (e.target !== this) return
-
       // Disable submit buttons
       $(this).find(':submit').prop('disabled', true)
 
@@ -33,9 +30,6 @@ init(function (root) {
       if (button) { $(button).addClass('loading') }
     })
     .on('ajax:complete', function (e) {
-      // Only run when triggered directly on form
-      if (e.target !== this) return
-
       const xhr = e.detail[0]
 
       // Reset submit buttons
@@ -70,9 +64,6 @@ init(function (root) {
       }
     })
     .on('ajax:success', function (e) {
-      // Only run when triggered directly on form
-      if (e.target !== this) return
-
       const xhr = e.detail[2]
 
       const $context = $(this).closest('[data-context]')
