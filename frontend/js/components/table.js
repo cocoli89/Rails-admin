@@ -28,3 +28,34 @@ $(document).on('click', 'tr[data-url]:not([data-behavior="dialog"])', function (
 $(document).on('click', 'tr[data-url] a, tr[data-url] input', function (e) {
   e.stopPropagation()
 })
+
+// Handle clicking on select all checkbox in table header
+$(document).on('click', 'th.select-row input', function (e) {
+  const table = $(this).closest('table')
+  const checked = $(this).is(':checked')
+
+  table.find('td.select-row input').prop('checked', checked)
+})
+
+// Handle single row selection to update header row status
+$(document).on('click', 'td.select-row input', function (e) {
+  const table = $(this).closest('table')
+
+  const checkboxes = table.find('td.select-row input')
+  const selectedCheckboxes = checkboxes.filter(':checked')
+
+  const header = table.find('th.select-row input')
+
+  if (checkboxes.length === selectedCheckboxes.length) {
+    // All checked
+    header.prop('indeterminate', false)
+    header.prop('checked', true)
+  } else if (selectedCheckboxes.length === 0) {
+    // None checked
+    header.prop('indeterminate', false)
+    header.prop('checked', false)
+  } else {
+    // Some checked
+    header.prop('indeterminate', true)
+  }
+})
