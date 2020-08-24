@@ -1,7 +1,7 @@
 module Trestle
   class Hook
     module Helpers
-      def hook(name, *args, &block)
+      def hook(name, *args)
         hooks = hooks(name)
 
         if hooks.any?
@@ -9,7 +9,7 @@ module Trestle
             hook.evaluate(self, *args)
           }, "\n")
         elsif block_given?
-          capture(*args, &block)
+          capture(*args, &Proc.new)
         end
       end
 
